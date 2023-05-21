@@ -16,14 +16,7 @@ public class VerifyHash implements Task<Boolean>, Serializable {
     }
 
     private Boolean check() {
-        switch (algorithm) {
-            case "md5":
-                return new HashMD5().check(input, hash);
-            case "sha1":
-                return new HashSHA1().check(input, hash);
-            default:
-                return false;
-        }
+        return HashFunction.check(algorithm, input, hash);
     }
 
     public Boolean execute() {

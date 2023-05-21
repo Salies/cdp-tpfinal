@@ -14,14 +14,7 @@ public class Hash implements Task<String>, Serializable {
     }
 
     private String hash() {
-        switch (algorithm) {
-            case "md5":
-                return new HashMD5().hash(input);
-            case "sha1":
-                return new HashSHA1().hash(input);
-            default:
-                return "";
-        }
+        return HashFunction.hash(algorithm, input);
     }
 
     public String execute() {

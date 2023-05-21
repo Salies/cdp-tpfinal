@@ -27,16 +27,22 @@ public class Main {
          */
 
         String testString = "batata";
-        Hash h = new Hash("md5", testString);
+        Hash h = new Hash("MD5", testString);
         String res = h.execute();
         System.out.println(res);
-        VerifyHash vh = new VerifyHash("md5", testString, res);
+        VerifyHash vh = new VerifyHash("MD5", testString, res);
         boolean res2 = vh.execute();
         System.out.println(res2);
-        h = new Hash("sha1", testString);
+        h = new Hash("SHA-1", testString);
         res = h.execute();
         System.out.println(res);
-        vh = new VerifyHash("sha1", testString, res);
+        vh = new VerifyHash("SHA-1", testString, res);
+        res2 = vh.execute();
+        System.out.println(res2);
+        h = new Hash("SHA-256", testString);
+        res = h.execute();
+        System.out.println(res);
+        vh = new VerifyHash("SHA-256", testString, res);
         res2 = vh.execute();
         System.out.println(res2);
     }
