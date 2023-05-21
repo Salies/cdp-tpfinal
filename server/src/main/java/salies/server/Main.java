@@ -33,5 +33,11 @@ public class Main {
         VerifyHash vh = new VerifyHash("md5", testString, res);
         boolean res2 = vh.execute();
         System.out.println(res2);
+        h = new Hash("sha1", testString);
+        res = h.execute();
+        System.out.println(res);
+        vh = new VerifyHash("sha1", testString, res);
+        res2 = vh.execute();
+        System.out.println(res2);
     }
 }
