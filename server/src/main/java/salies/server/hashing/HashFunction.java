@@ -1,6 +1,8 @@
 package salies.server.hashing;
 
-public interface HashFunction {
-    public String hash(String input);
-    public Boolean check(String input, String hash);
+public abstract class HashFunction {
+    abstract String hash(String input);
+    protected Boolean check(String input, String hash) {
+        return hash(input).equals(hash);
+    }
 }

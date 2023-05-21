@@ -1,5 +1,7 @@
 package salies.server;
 
+import salies.server.hashing.Hash;
+import salies.server.hashing.VerifyHash;
 import salies.server.network.ProfileRenderer;
 
 import java.io.IOException;
@@ -23,5 +25,13 @@ public class Main {
         writer.write(res);
         writer.close();
          */
+
+        String testString = "batata";
+        Hash h = new Hash("md5", testString);
+        String res = h.execute();
+        System.out.println(res);
+        VerifyHash vh = new VerifyHash("md5", testString, res);
+        boolean res2 = vh.execute();
+        System.out.println(res2);
     }
 }
