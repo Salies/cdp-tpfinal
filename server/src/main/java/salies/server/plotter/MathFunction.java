@@ -8,6 +8,18 @@ import salies.server.Task;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
+/*
+    Este serviço plota uma função dada função matemática, dentre as disponíveis:
+    - Afim
+    - Quadrática (parábola)
+    - Cúbica
+    - Seno
+    O cliente passa o x inicial e o x final, bem como outros parâmetros, a depender da função.
+    Ex.: para a parábola, o cliente passa, além dos x inicias e finais, os parâmetros a, b e c.
+    Já para o seno, passa apenas o x inicial e o x final (em graus).
+
+    Esta é uma classe abstrata geral. Cada função tem sua respectiva classe, herdeira desta.
+ */
 abstract class MathFunction implements Task<BufferedImage>, Serializable {
     private Double x0;
     private Double xF;
