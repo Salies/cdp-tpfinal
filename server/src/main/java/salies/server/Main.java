@@ -14,6 +14,7 @@ public class Main {
         ImageIO.write((BufferedImage) res, "png", new java.io.File("line.png"));
         */
 
+        /*
         ProfileRenderer pr = new ProfileRenderer("Purah", "purah", "all thins sheikah <3", "Hyrule", 1, 333, 2);
         String res = pr.execute();
         // Save string to test.html
@@ -21,5 +22,6 @@ public class Main {
         java.io.FileWriter writer = new java.io.FileWriter(file);
         writer.write(res);
         writer.close();
+         */
     }
 }
