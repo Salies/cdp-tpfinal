@@ -50,13 +50,14 @@ public class MainWindow extends javax.swing.JFrame {
         cSpinner = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         dSpinner = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        plotBtn = new javax.swing.JButton();
         imgLabel = new javax.swing.JLabel();
         htmlPanel = new javax.swing.JPanel();
         hashPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("TP Final CDeP - Cliente");
 
         jLabel2.setText("Tipo de função:");
 
@@ -91,8 +92,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         dSpinner.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 0.5d));
 
-        jButton1.setText("Plotar");
-        jButton1.setPreferredSize(new java.awt.Dimension(106, 23));
+        plotBtn.setText("Plotar");
+        plotBtn.setPreferredSize(new java.awt.Dimension(106, 23));
+        plotBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                plotBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout plotPanelLayout = new javax.swing.GroupLayout(plotPanel);
         plotPanel.setLayout(plotPanelLayout);
@@ -135,7 +141,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(plotBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(52, 52, 52)))
                 .addGap(24, 24, 24))
         );
@@ -160,7 +166,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(cSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(dSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(plotBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(imgLabel)
                 .addContainerGap(285, Short.MAX_VALUE))
@@ -234,6 +240,28 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_funcTypeActionPerformed
 
+    private void plotBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotBtnActionPerformed
+        StringBuilder query = new StringBuilder();
+        // formato do query: "plot <tipo da função (int)> <x inicial (double)> <x final (double)> <a (double)> <b (double)> <c (double)> <d (double)>"
+        // a, b, c e d opcionais, a depender do tipo de função
+        query.append("plot ");
+        query.append(funcType.getSelectedIndex());
+        query.append(" ");
+        query.append(fromXSpinner.getValue());
+        query.append(" ");
+        query.append(toXSpinner.getValue());
+        int idx = funcType.getSelectedIndex();
+        if (idx == 3) idx = -2;
+        JSpinner[] spinners = {aSpinner, bSpinner, cSpinner, dSpinner};
+        int act = idx + 2;
+        for(int i = 0; i < 4; i++){
+            if(i >= act) break;
+            query.append(" ");
+            query.append(spinners[i].getValue());
+        }
+        System.out.println(query.toString());
+    }//GEN-LAST:event_plotBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -279,7 +307,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel hashPanel;
     private javax.swing.JPanel htmlPanel;
     private javax.swing.JLabel imgLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -289,6 +316,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JButton plotBtn;
     private javax.swing.JPanel plotPanel;
     private javax.swing.JSpinner toXSpinner;
     // End of variables declaration//GEN-END:variables
