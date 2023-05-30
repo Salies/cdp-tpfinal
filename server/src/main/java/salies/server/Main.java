@@ -16,17 +16,17 @@ public class Main {
         ImageIO.write((BufferedImage) res, "png", new java.io.File("line.png"));
         */
 
-        /*
-        ProfileRenderer pr = new ProfileRenderer("Purah", "purah", "all thins sheikah <3", "Hyrule", 1, 333, 2);
+
+        ProfileRenderer pr = new ProfileRenderer("Daniel", "purah", "all thins sheikah <3", "Hyrule", 0, 333, 2);
         String res = pr.execute();
         // Save string to test.html
         java.io.File file = new java.io.File("test.html");
         java.io.FileWriter writer = new java.io.FileWriter(file);
         writer.write(res);
         writer.close();
-         */
 
-        String testString = "batata";
+
+        /*String testString = "batata";
         Hash h = new Hash("MD5", testString);
         String res = h.execute();
         System.out.println(res);
@@ -44,6 +44,6 @@ public class Main {
         System.out.println(res);
         vh = new VerifyHash("SHA-256", testString, res);
         res2 = vh.execute();
-        System.out.println(res2);
+        System.out.println(res2);*/
     }
 }
