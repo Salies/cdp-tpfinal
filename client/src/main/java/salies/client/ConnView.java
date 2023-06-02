@@ -4,6 +4,8 @@
  */
 package salies.client;
 
+import javax.swing.*;
+
 /**
  *
  * @author danie
@@ -32,14 +34,13 @@ public class ConnView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         addressTextField = new javax.swing.JTextField();
         portTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        connBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Defina sua conexão com o servidor.");
 
-        jLabel2.setText("Deixe os campos em branco");
+        jLabel2.setText("Deixe os campos como estão para conexão padrão.");
 
         jLabel3.setText("Endereço");
 
@@ -49,14 +50,12 @@ public class ConnView extends javax.swing.JFrame {
 
         portTextField.setText("51666");
 
-        jButton1.setText("Conectar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        connBtn.setText("Conectar");
+        connBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                connBtnActionPerformed(evt);
             }
         });
-
-        jLabel5.setText("para conexão padrão (valores mostrados).");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,11 +64,10 @@ public class ConnView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
+                        .addComponent(connBtn)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
@@ -87,8 +85,6 @@ public class ConnView extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel5)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -98,16 +94,30 @@ public class ConnView extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(portTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(connBtn)
                 .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void connBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connBtnActionPerformed
+        String address = addressTextField.getText();
+        int port = Integer.parseInt(portTextField.getText());
+        // Criando o socket, passando a si mesmo para ele para que o programa prossiga
+        SocketClient socket = new SocketClient(this, address, port);
+        Thread t = new Thread(socket);
+        t.start();
+    }//GEN-LAST:event_connBtnActionPerformed
+
+    public void nextWindow(SocketClient soc) {
+        new MainWindow(soc).setVisible(true);
+        this.dispose();
+    }
+
+    public void connError() {
+        JOptionPane.showMessageDialog(this, "Não foi possível se conectar ao servidor.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
 
     /**
      * @param args the command line arguments
@@ -146,12 +156,11 @@ public class ConnView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTextField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton connBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField portTextField;
     // End of variables declaration//GEN-END:variables
 }

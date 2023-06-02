@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class Server {
     public static void main(String[] args) {
-        int port = 8080; // Change this to your desired port number
+        int port = 51666; // Change this to your desired port number
 
         try {
             ServerSocket serverSocket = new ServerSocket(port);
@@ -45,8 +45,11 @@ public class Server {
         int bytesRead;
 
         while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
-            outputStream.flush();
+            //outputStream.write(buffer, 0, bytesRead);
+            //outputStream.flush();
+            // bytes to string
+            String input = new String(buffer, 0, bytesRead);
+            System.out.println(input);
         }
 
         // Cleanup
