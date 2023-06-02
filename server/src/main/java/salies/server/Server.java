@@ -6,11 +6,21 @@ import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 public class Server {
-    public static void main(String[] args) {
+    private static Compute comp;
+    public static void main(String[] args) throws RemoteException, NotBoundException {
         int port = 51666; // Change this to your desired port number
+
+        // Criando ComputeEngine e colocando no rmiregistry
+        String name = "Compute";
+        Registry registry = LocateRegistry.getRegistry("localhost", Integer.parseInt("1099"));
+        comp = (Compute) registry.lookup(name);
 
         try {
             ServerSocket serverSocket = new ServerSocket(port);
