@@ -3,8 +3,10 @@ package salies.server;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Server {
     public static void main(String[] args) {
@@ -49,7 +51,7 @@ public class Server {
             //outputStream.flush();
             // bytes to string
             String input = new String(buffer, 0, bytesRead);
-            System.out.println(input);
+            parseMessage(input);
         }
 
         // Cleanup
@@ -57,5 +59,17 @@ public class Server {
         inputStream.close();
         clientSocket.close();
         System.out.println("Client disconnected: " + clientSocket.getInetAddress().getHostAddress());
+    }
+
+    // interpreta os comandos recebidos do cliente
+    private static void parseMessage(String message) {
+        String[] args = message.split(" ");
+        // Não precisa valida o que vem do cliente. Vamos confiar nele (eu que fiz, pô!)
+        int argLen = args.length;
+        switch (args[0]){
+            case "plot":
+
+                break;
+        }
     }
 }

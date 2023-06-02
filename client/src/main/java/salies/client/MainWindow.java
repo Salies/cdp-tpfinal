@@ -262,7 +262,8 @@ public class MainWindow extends javax.swing.JFrame {
             query.append(" ");
             query.append(spinners[i].getValue());
         }
-        System.out.println(query.toString());
+
+        socketClient.sendMessage(query.toString());
     }//GEN-LAST:event_plotBtnActionPerformed
 
     /**
