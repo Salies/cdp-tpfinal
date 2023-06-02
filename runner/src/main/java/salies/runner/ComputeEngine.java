@@ -18,7 +18,7 @@ public class ComputeEngine implements Compute {
             String name = "Compute";
             Compute engine = new ComputeEngine();
             Compute stub = (Compute) UnicastRemoteObject.exportObject(engine, 0);
-            Registry registry = LocateRegistry.getRegistry(args[0],Integer.parseInt(args[1]));
+            Registry registry = LocateRegistry.getRegistry("localhost", Integer.parseInt("1099"));
             registry.rebind(name, stub);
             System.out.println("ComputeEngine bound");
         } catch (Exception e) {
