@@ -33,10 +33,14 @@ package server;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.awt.image.BufferedImage;
 import java.math.BigDecimal;
+import java.io.File;
+import javax.imageio.ImageIO;
 import compute.Compute;
 import server.hashing.Hash;
 import server.network.ProfileRenderer;
+import server.plotter.Cubic;
 
 public class ComputePi {
     public static void main(String args[]) {
@@ -60,6 +64,12 @@ public class ComputePi {
             String html = comp.executeTask(task2);
 
             System.out.println("html ok");
+
+            Cubic task3 = new Cubic(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 4.0f, 0.1f, "cubic");
+            //BufferedImage img = comp.executeTask(task3);
+            // save image as file
+            //File outputfile = new File("saved.png");
+            //ImageIO.write(img, "png", outputfile);
         } catch (Exception e) {
             System.err.println("ComputePi exception:");
             e.printStackTrace();
