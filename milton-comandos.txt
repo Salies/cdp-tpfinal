@@ -9,6 +9,8 @@ javac -cp ./classes/compute.jar runner/ComputeEngine.java
 
 javac -cp ./classes/compute.jar server/hashing/*.java
 
+javac -cp ./classes/compute.jar server/network/ProfileRenderer.java
+
 javac -cp ./classes/compute.jar;. server/ComputePi.java server/Pi.java
 
 ---
@@ -23,4 +25,4 @@ java -cp F:\Documentos\Unesp\CDP\cdp-tpfinal;F:\Documentos\Unesp\CDP\cdp-tpfinal
 
 :::
 
-java -cp F:\Documentos\Unesp\CDP\cdp-tpfinal;F:\Documentos\Unesp\CDP\cdp-tpfinal\classes\compute.jar -Djava.security.policy=client-win.policy server.ComputePi localhost 1099 45
+java -cp F:\Documentos\Unesp\CDP\cdp-tpfinal;F:\Documentos\Unesp\CDP\cdp-tpfinal\classes\compute.jar -Djava.security.policy=client-win.policy server.ComputePi

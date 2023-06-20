@@ -5,6 +5,8 @@ import compute.Task;
 import java.io.Serializable;
 
 public class Hash implements Task<String>, Serializable {
+    private static final long serialVersionUID = 666L;
+
     private String algorithm;
     private String input;
 
