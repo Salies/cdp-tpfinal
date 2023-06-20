@@ -7,7 +7,9 @@ javac -cp ./classes/compute.jar runner/ComputeEngine.java
 
 :::
 
-javac -cp ./classes/compute.jar server/ComputePi.java server/Pi.java
+javac -cp ./classes/compute.jar server/hashing/*.java
+
+javac -cp ./classes/compute.jar;. server/ComputePi.java server/Pi.java
 
 ---
 

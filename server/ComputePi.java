@@ -35,6 +35,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.math.BigDecimal;
 import compute.Compute;
+import server.hashing.Hash;
 
 public class ComputePi {
     public static void main(String args[]) {
@@ -43,11 +44,16 @@ public class ComputePi {
         }
         try {
             String name = "Compute";
-            Registry registry = LocateRegistry.getRegistry(args[0],Integer.parseInt(args[1]));
+            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             Compute comp = (Compute) registry.lookup(name);
-            Pi task = new Pi(Integer.parseInt(args[2]));
-            BigDecimal pi = comp.executeTask(task);
-            System.out.println(pi);
+            
+            //Pi task = new Pi(45);
+            //BigDecimal pi = comp.executeTask(task);
+
+            Hash task = new Hash("md5", "werehog");
+            String h = comp.executeTask(task);
+
+            System.out.println(h);
         } catch (Exception e) {
             System.err.println("ComputePi exception:");
             e.printStackTrace();
