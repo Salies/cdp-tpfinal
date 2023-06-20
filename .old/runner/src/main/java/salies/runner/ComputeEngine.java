@@ -14,12 +14,13 @@ public class ComputeEngine implements Compute {
         return t.execute();
     }
     public static void main(String[] args) {
+        // load policy
+        System.setProperty("java.security.policy", "file:./src/main/java/salies/runner/server-win.policy");
+
         try {
             if (System.getSecurityManager() == null) {
                 System.setSecurityManager(new SecurityManager());
             }
-
-            System
 
             Compute engine = new ComputeEngine();
 

@@ -21,10 +21,18 @@ public class Server {
     public static void main(String[] args) throws RemoteException, NotBoundException {
         int port = 51666; // Change this to your desired port number
 
+        // load policy
+        System.setProperty("java.security.policy", "file:./src/main/java/salies/runner/client-win.policy");
+
+        // load security manager
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
+
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         comp = (Compute) registry.lookup("Compute");
 
-        try {
+       /* try {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println("Server listening on port " + port);
 
@@ -44,7 +52,7 @@ public class Server {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private static void handleClient(Socket clientSocket) throws IOException {
