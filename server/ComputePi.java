@@ -35,7 +35,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.math.BigDecimal;
 import compute.Compute;
-//import server.hashing.Hash;
+import server.hashing.Hash;
 import server.network.ProfileRenderer;
 
 public class ComputePi {
@@ -51,15 +51,15 @@ public class ComputePi {
             //Pi task = new Pi(45);
             //BigDecimal pi = comp.executeTask(task);
 
-            //Hash task = new Hash("md5", "werehog");
-            //String h = comp.executeTask(task);
+            Hash task = new Hash("md5", "werehog");
+            String h = comp.executeTask(task);
 
-            //System.out.println(h);
+            System.out.println(h);
 
             ProfileRenderer task2 = new ProfileRenderer("João", "joao", "Sou o João", "Porto", 1, 0, 0);
             String html = comp.executeTask(task2);
 
-            System.out.println(html);
+            System.out.println("html ok");
         } catch (Exception e) {
             System.err.println("ComputePi exception:");
             e.printStackTrace();

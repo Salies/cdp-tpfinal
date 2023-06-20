@@ -11,6 +11,8 @@ javac -cp ./classes/compute.jar server/hashing/*.java
 
 javac -cp ./classes/compute.jar server/network/ProfileRenderer.java
 
+javac -cp ./classes/compute.jar;./classes/xchart-3.8.4.jar server/plotter/*.java
+
 javac -cp ./classes/compute.jar;. server/ComputePi.java server/Pi.java
 
 ---
