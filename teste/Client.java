@@ -23,7 +23,11 @@ public class Client
       
             // the following loop performs the exchange of
             // information between client and client handler
-            dos.writeUTF("salve");
+            dos.writeUTF("network Salies salies It's%not%a%lake,%it's%an%ocean. São%Paulo 0 666 1");
+
+            String received = dis.readUTF();
+            System.out.println(received);
+
             dos.writeUTF("qqq");
               
             // closing resources

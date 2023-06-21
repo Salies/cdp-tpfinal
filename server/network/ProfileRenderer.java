@@ -34,7 +34,10 @@ public class ProfileRenderer implements Task<String>, Serializable {
     private byte[] avatar;
 
 
-    public ProfileRenderer(String realName, String username, String bio, String location, Integer avatarOption, Integer nFollowers, Integer nFollowing) {
+    public ProfileRenderer(
+            String realName, String username, String bio, String location, 
+            Integer avatarOption, Integer nFollowers, Integer nFollowing
+        ) {
         this.realName = realName;
         this.username = username;
         this.bio = bio;

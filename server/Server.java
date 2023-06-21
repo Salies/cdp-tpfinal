@@ -10,9 +10,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import compute.Compute;
-import server.hashing.Hash;
-import server.network.ProfileRenderer;
-import server.stats.DataStats;
 
 public class Server {
     public static void main(String args[]) {
@@ -35,7 +32,7 @@ public class Server {
                     DataInputStream inStream = new DataInputStream(soc.getInputStream());
                     DataOutputStream outStream = new DataOutputStream(soc.getOutputStream());
                     // Invocando uma thread para cuidar dessa conexão.
-                    Thread t = new ClientHandler(soc, inStream, outStream);
+                    Thread t = new ClientHandler(soc, inStream, outStream, comp);
                     // Iniciando a thread.
                     t.start();
                 } catch (Exception e) {
