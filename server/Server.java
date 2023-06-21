@@ -2,7 +2,8 @@ package server;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.math.BigDecimal;
+import java.io.DataInputStream;
+import java.net.ServerSocket;
 import java.util.HashMap;
 
 import compute.Compute;
@@ -13,31 +14,37 @@ import server.stats.DataStats;
 public class Server {
     public static void main(String args[]) {
         try {
-            String name = "Compute";
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            Compute comp = (Compute) registry.lookup(name);
-            
-            //Pi task = new Pi(45);
-            //BigDecimal pi = comp.executeTask(task);
+            System.out.println("Servidor iniciado.");
+            System.out.println("Estabelecendo conexão com o executor...");
+            Registry registry = LocateRegistry.getRegistry(args[0], Integer.parseInt(args[1]));
+            Compute comp = (Compute) registry.lookup("Serezane");
+            System.out.println("Conexão com o executor estabelecida.");
+            System.out.println("Iniciando o listener...");
+            // Criando o socket.
+            ServerSocket serverSocket = new ServerSocket(Integer.parseInt(args[2]));
+            System.out.println("Listener iniciado. O servidor está pronto para receber conexões.");
+            // Loop principal de conexões.
+            while(true) {
+                Socket soc = null;
+                try {
+                    soc = serverSocket.accept();
+                    // Pegando os fluxos...
+                    DataInputStream inStream = new DataInputStream(soc.getInputStream());
+                    DataOutputStream outStream = new DataOutputStream(soc.getOutputStream());
+                    // Invocando uma thread para cuidar dessa conexão.
+                    Thread t = new ClientHandler(soc, inStream, outStream);
+                    // Iniciando a thread.
+                    t.start();
+                } catch (Exception e) {
+                    System.err.println("Erro ao aceitar conexão.");
+                    e.printStackTrace();
+                }
+            }
 
-            Hash task = new Hash("md5", "werehog");
-            String h = comp.executeTask(task);
-
-            System.out.println(h);
-
-            ProfileRenderer task2 = new ProfileRenderer("João", "joao", "Sou o João", "Porto", 1, 0, 0);
-            String html = comp.executeTask(task2);
-
-            //System.out.println(html);
-            System.out.println("html ok");
-
-            Double[] data = {3.0, 2.0, 4.0, 2.0, 2.0, 10.0, 19.0, 18.0, 19.0, 8.0, 4.0, 1.0, 1.0, 1.0, 1.0, 1.0, 3.0, 6.0, 7.0, 9.0, 1.0};
-            DataStats ds = new DataStats(data, 1);
-            HashMap<String, Double> stats = comp.executeTask(ds);
-            System.out.println(stats);
-            
+            // A única maneira de encerrar o servidor é com um Ctrl+C, logo, não é necessário fechar o socket.
+            // serverSocket.close();
         } catch (Exception e) {
-            System.err.println("ComputePi exception:");
+            System.err.println("Erro ao iniciar o servidor:");
             e.printStackTrace();
         }
     }    
