@@ -81,17 +81,18 @@
                               <Component id="bioScrollPane" min="-2" pref="277" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="nFollowingLabel" min="-2" pref="80" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="nFollowingBox" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="nFollowersLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="nFollowersBox" max="32767" attributes="0"/>
-                                  </Group>
                                   <Component id="renderBtn" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="nFollowersLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="nFollowingLabel" min="-2" pref="80" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="nFollowingBox" max="32767" attributes="0"/>
+                                          <Component id="nFollowersBox" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -110,7 +111,7 @@
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="avatarLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="avatarBox" max="32767" attributes="0"/>
+                              <Component id="avatarBox" pref="77" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
@@ -144,9 +145,9 @@
                                   <Component id="nFollowersLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nFollowingBox" min="-2" max="-2" attributes="0"/>
-                                  <Component id="nFollowingLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="nFollowingBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nFollowingLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="renderBtn" min="-2" max="-2" attributes="0"/>
@@ -218,11 +219,10 @@
             <Component class="javax.swing.JComboBox" name="avatarBox">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value="Zelda"/>
+                    <StringItem index="1" value="Purah"/>
+                    <StringItem index="2" value="Riju"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -236,6 +236,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="nFollowersBox">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="666" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="nFollowingLabel">
               <Properties>
@@ -243,6 +248,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="nFollowingBox">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="1" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="renderBtn">
               <Properties>

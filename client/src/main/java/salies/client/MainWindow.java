@@ -147,11 +147,15 @@ public class MainWindow extends javax.swing.JFrame {
 
         avatarLabel.setText("Avatar");
 
-        avatarBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        avatarBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Zelda", "Purah", "Riju" }));
 
         nFollowersLabel.setText("nº de seguidores");
 
+        nFollowersBox.setModel(new javax.swing.SpinnerNumberModel(666, 0, null, 1));
+
         nFollowingLabel.setText("nº de seguindo");
+
+        nFollowingBox.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
 
         renderBtn.setText("Renderizar");
         renderBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -172,15 +176,15 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(bioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(renderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(htmlPanelLayout.createSequentialGroup()
-                                .addComponent(nFollowingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(nFollowersLabel)
+                                    .addComponent(nFollowingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nFollowingBox))
-                            .addGroup(htmlPanelLayout.createSequentialGroup()
-                                .addComponent(nFollowersLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nFollowersBox))
-                            .addComponent(renderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nFollowingBox)
+                                    .addComponent(nFollowersBox)))))
                     .addGroup(htmlPanelLayout.createSequentialGroup()
                         .addComponent(usernameLabel)
                         .addGap(5, 5, 5)
@@ -196,7 +200,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(avatarLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(avatarBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(avatarBox, 0, 77, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         htmlPanelLayout.setVerticalGroup(
@@ -223,7 +227,7 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(nFollowersBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nFollowersLabel))
                         .addGap(10, 10, 10)
-                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nFollowingBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nFollowingLabel))
                         .addGap(10, 10, 10)
