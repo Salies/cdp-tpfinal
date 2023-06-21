@@ -32,6 +32,7 @@ public class ClientHandler extends Thread {
 
     // Handlers, cada um responsável por um serviço.
     // Devolve a string que deve ser passada ao cliente.
+
     private String handleNetwork(String[] command) {
         ProfileRenderer pr = new ProfileRenderer(
             command[1], command[2], command[3], command[4], 
@@ -39,13 +40,45 @@ public class ClientHandler extends Thread {
         );
 
         try {
+            System.out.println("Enviando objeto ProfileRenderer (servico Template Engine) para o executor...");
             String html = this.comp.executeTask(pr);
+            System.out.println("Recebida a resposta para o servico Template Engine.");
             return html;
         } catch(RemoteException e) {
             System.err.println(remoteErrorMsg);
             e.printStackTrace();
         }
 
+        return "";
+    }
+
+    private String handleHash(String[] command) {
+        if(command[1].equals("exec")) {
+            Hash h = new Hash(command[2], command[3]);
+            try {
+                System.out.println("Enviando objeto Hash (servico Hashing) para o executor...");
+                String resHash = this.comp.executeTask(h);
+                System.out.println("Recebida a resposta para o servico Hashing.");
+                return resHash;
+            } catch(RemoteException e) {
+                System.err.println(remoteErrorMsg);
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        if(!command[1].equals("verify")) return "";
+
+        VerifyHash vh = new VerifyHash(command[2], command[3], command[4]);
+        try {
+            System.out.println("Enviando objeto VerifyHash (servico Hashing) para o executor...");
+            Boolean resHash = this.comp.executeTask(vh);
+            System.out.println("Recebida a resposta para o servico Hashing.");
+            return resHash.toString();
+        } catch(RemoteException e) {
+            System.err.println(remoteErrorMsg);
+            e.printStackTrace();
+        }
         return "";
     }
 
@@ -60,13 +93,12 @@ public class ClientHandler extends Thread {
             // Loop principal
             try {
                 received = (String) this.inStream.readObject();
+                System.out.println("Comando recebido do cliente: " + received);
                 // qqq - código de quitar da Bethesda ;)
                 if(received.equals("qqq")) {
                     this.soc.close();
                     break;
                 }
-
-                //System.out.println(received);
 
                 // Interpretando o comando
                 String[] command = received.split(" ");
@@ -75,6 +107,9 @@ public class ClientHandler extends Thread {
                     case "network":
                         toSend = handleNetwork(command);
                         break;
+                    case "hash":
+                        toSend = handleHash(command);
+                        break;
                     default:
                         toSend = "error";
                         break;
@@ -82,6 +117,7 @@ public class ClientHandler extends Thread {
 
                 // Mandando a resposta para o cliente
                 this.outStream.writeObject(toSend);
+                System.out.println("Resposta enviada para o cliente.\n");
             } catch (Exception e) {
                 // IOException, ClassNotFoundException, RemoteException
                 System.err.println("Erro ao ler do cliente.");

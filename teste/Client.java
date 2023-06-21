@@ -27,6 +27,20 @@ public class Client
             dos.writeObject(msg);
 
             String received = (String) dis.readObject();
+            System.out.println(received.charAt(0));
+
+            // teste 2: hashing
+            msg = "hash exec MD5 batatadomal";
+            dos.writeObject(msg);
+
+            received = (String) dis.readObject();
+            System.out.println(received);
+
+            // hashing reverso
+            msg = "hash verify md5 batatadomal " + received;
+            dos.writeObject(msg);
+
+            received = (String) dis.readObject();
             System.out.println(received);
 
             msg = "qqq";

@@ -16,7 +16,10 @@ public class Runner implements Compute {
     }
 
     public <T> T executeTask(Task<T> t) {
-        return t.execute();
+        System.out.println("Solicitação recebida do servidor. Executando...");
+        T executed = t.execute();
+        System.out.println("Execução concluída. Enviando resultado para o servidor.\n");
+        return executed;
     }
 
     public static void main(String[] args) {
@@ -26,7 +29,7 @@ public class Runner implements Compute {
             // args[0] = port pro rmi registry
             Registry registry = LocateRegistry.createRegistry(Integer.parseInt(args[0]));
             registry.rebind("Serezane", stub);
-            System.out.println("Runner bound.");
+            System.out.println("Runner bound.\n");
         } catch (Exception e) {
             System.err.println("Erro no runner:");
             e.printStackTrace();

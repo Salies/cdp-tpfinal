@@ -22,7 +22,7 @@ public class Server {
             System.out.println("Iniciando o listener...");
             // Criando o socket.
             ServerSocket serverSocket = new ServerSocket(Integer.parseInt(args[2]));
-            System.out.println("Listener iniciado. O servidor esta pronto para receber conexoes.");
+            System.out.println("Listener iniciado. O servidor esta pronto para receber conexoes.\n");
             // Loop principal de conexões.
             while(true) {
                 Socket soc = null;
