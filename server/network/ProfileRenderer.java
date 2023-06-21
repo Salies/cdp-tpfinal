@@ -76,6 +76,10 @@ public class ProfileRenderer implements Task<String>, Serializable {
         String htmlString = this.html;
         // Criando mapa para troca dos placeholders pelos valores
         HashMap<String, String> placeholders = new HashMap<>();
+        // Substitui {{}} em this.realName, this.bio e this.location por " "
+        this.realName = this.realName.replace("{{}}", " ");
+        this.bio = this.bio.replace("{{}}", " ");
+        this.location = this.location.replace("{{}}", " ");
         placeholders.put("%realname%", this.realName);
         placeholders.put("%username%", this.username);
         placeholders.put("%bio%", this.bio);

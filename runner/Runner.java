@@ -16,7 +16,7 @@ public class Runner implements Compute {
     }
 
     public <T> T executeTask(Task<T> t) {
-        System.out.println("Solicitacaoo recebida do servidor. Executando...");
+        System.out.println("Solicitacao recebida do servidor. Executando...");
         T executed = t.execute();
         System.out.println("Execucao concluida. Enviando resultado para o servidor.\n");
         return executed;

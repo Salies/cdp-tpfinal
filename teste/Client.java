@@ -23,11 +23,15 @@ public class Client
       
             // the following loop performs the exchange of
             // information between client and client handler
-            String msg = "network Salies salies It's%not%a%lake,%it's%an%ocean. São%Paulo 0 666 1";
+            String msg = "network Daniel{{}}Serezane salies It's{{}}not{{}}a{{}}lake,{{}}it's{{}}an{{}}ocean. São{{}}Paulo 0 666 1";
             dos.writeObject(msg);
 
             String received = (String) dis.readObject();
             System.out.println(received.charAt(0));
+            // Write to teste.html
+            FileWriter myWriter = new FileWriter("teste.html");
+            myWriter.write(received);
+            myWriter.close();
 
             // teste 2: hashing
             msg = "hash exec MD5 batatadomal";
