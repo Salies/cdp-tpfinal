@@ -32,11 +32,29 @@ class ClientController {
         this.mainWindow.setVisible(true);
     }
 
-    private void sendMessage(String message) {
-        // ...
+    public void messageHandler(String type, String body) throws IOException, ClassNotFoundException {
+        // passo 1: envia a mensagem para o servidor
+        String message = type + " " + body;
+        this.outStream.writeObject(message);
+        System.out.println("Solicitado ao servidor o seviço " + type + " com o corpo " + body + ".");
+
+        // passo 2: recebe a resposta do servidor - dado o protocolo estabelecido,
+        // ela sempre será uma String
+        String response = (String) this.inStream.readObject();
+        System.out.println("Recebido o resultado do servidor: " + response);
+
+        // passo 3: mandando a resposta para a MainWindow.
+        // Não é responsabilidade do controlador trata-lá, isso é coisa da View.
+        switch (type) {
+            case "network" -> this.mainWindow.setRenderedHTML(response);
+            case "hash exec" -> this.mainWindow.setHashResult(response);
+            case "hash verify" -> this.mainWindow.setVerifyHashResult(response);
+            case "stats" -> this.mainWindow.setStatsResult(response);
+        }
     }
 
     private void closeConnection() throws IOException {
+        System.out.println("Fechando a conexão...");
         this.outStream.writeObject("qqq");
         this.soc.close();
         this.outStream.close();

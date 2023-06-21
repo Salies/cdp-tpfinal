@@ -7,6 +7,7 @@ package salies.client;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -27,7 +28,40 @@ public class MainWindow extends javax.swing.JFrame {
     // Como o NetBeans pede para que eu não altere o código dele,
     // criaria uma initComponentes própria
     private void customInitComponents() {
+        // ProfileRenderer: travando o pane
+        resPane.setEditable(false);
+        // Preparando-o para receber apenas HTML
+        resPane.setContentType("text/html");
+    }
+
+    // Manda a mensagem para que o controlador encaminhe ao servidor
+    private void sendMessage(String type, String body) {
+        try {
+            controller.messageHandler(type, body);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao enviar mensagem.\nVerifique o log para mais detalhes.",
+                    "Erro", JOptionPane.ERROR_MESSAGE
+            );
+            e.printStackTrace();
+        }
+    }
+
+    // ProfileRenderer: seta o HTML no pane
+    public void setRenderedHTML(String html) {
+        resPane.setText(html);
+    }
+
+    public void setStatsResult(String result) {
         // ...
+    }
+
+    public void setHashResult(String hash) {
+        // ...
+    }
+
+    public void setVerifyHashResult(String result) {
+        Boolean res = Boolean.parseBoolean(result);
     }
 
     /**
@@ -98,6 +132,11 @@ public class MainWindow extends javax.swing.JFrame {
         resLabel.setText("Resultado");
 
         renderBtn.setText("Renderizar");
+        renderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                renderBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout htmlPanelLayout = new javax.swing.GroupLayout(htmlPanel);
         htmlPanel.setLayout(htmlPanelLayout);
@@ -110,10 +149,10 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(resLabel)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(htmlPanelLayout.createSequentialGroup()
-                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(resScrollPane, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bioLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, htmlPanelLayout.createSequentialGroup()
+                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(resScrollPane)
+                            .addComponent(bioLabel)
+                            .addGroup(htmlPanelLayout.createSequentialGroup()
                                 .addComponent(bioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
                                 .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,10 +164,7 @@ public class MainWindow extends javax.swing.JFrame {
                                         .addComponent(nFollowersLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(nFollowersBox))
-                                    .addComponent(renderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(20, 20, 20))
-                    .addGroup(htmlPanelLayout.createSequentialGroup()
-                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(renderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(htmlPanelLayout.createSequentialGroup()
                                 .addComponent(usernameLabel)
                                 .addGap(5, 5, 5)
@@ -224,6 +260,32 @@ public class MainWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void renderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renderBtnActionPerformed
+        StringBuilder msgBuilder = new StringBuilder();
+        // Construindo o query
+        msgBuilder.append(realNameField.getText().replace(" ", "{{}}"));
+        msgBuilder.append(" ");
+        msgBuilder.append(usernameField.getText().replace(" ", ""));
+        msgBuilder.append(" ");
+        msgBuilder.append(bioTextArea.getText().replace(" ", "{{}}"));
+        msgBuilder.append(" ");
+        msgBuilder.append(locField.getText().replace(" ", "{{}}"));
+        msgBuilder.append(" ");
+        msgBuilder.append(avatarBox.getSelectedIndex());
+        msgBuilder.append(" ");
+        msgBuilder.append(nFollowersBox.getValue());
+        msgBuilder.append(" ");
+        msgBuilder.append(nFollowingBox.getValue());
+
+        // Enviando a mensagem
+        try {
+            this.controller.messageHandler("network", msgBuilder.toString());
+        } catch (IOException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao enviar mensagem: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_renderBtnActionPerformed
 
     /**
      * @param args the command line arguments

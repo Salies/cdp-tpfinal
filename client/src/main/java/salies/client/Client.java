@@ -31,6 +31,8 @@ public class Client {
         ObjectOutputStream outStream = new ObjectOutputStream(soc.getOutputStream());
         ObjectInputStream inStream = new ObjectInputStream(soc.getInputStream());
 
+        System.out.println("Conectado ao servidor.\n");
+
         // Criando o controlador
         // Ele cuidará do resto
         new ClientController(soc, outStream, inStream);
