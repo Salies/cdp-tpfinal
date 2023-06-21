@@ -117,6 +117,39 @@ public class MainWindow extends javax.swing.JFrame {
         nFollowingBox = new javax.swing.JSpinner();
         renderBtn = new javax.swing.JButton();
         hashPanel = new javax.swing.JPanel();
+        entradaLabel = new javax.swing.JLabel();
+        entradaScrollPane = new javax.swing.JScrollPane();
+        entradaPane = new javax.swing.JTextPane();
+        hashLabel = new javax.swing.JLabel();
+        hashScrollPane = new javax.swing.JScrollPane();
+        hashPane = new javax.swing.JTextPane();
+        hashBtn = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        statsPanel = new javax.swing.JPanel();
+        numbersLabel = new javax.swing.JLabel();
+        numbersScrollPane = new javax.swing.JScrollPane();
+        numbersPane = new javax.swing.JTextPane();
+        statsGuide = new javax.swing.JLabel();
+        lagLabel = new javax.swing.JLabel();
+        lagBox = new javax.swing.JSpinner();
+        statsBtn = new javax.swing.JButton();
+        resLabel = new javax.swing.JLabel();
+        meanLabel = new javax.swing.JLabel();
+        meanField = new javax.swing.JTextField();
+        medianLabel = new javax.swing.JLabel();
+        medianField = new javax.swing.JTextField();
+        varLabel = new javax.swing.JLabel();
+        varField = new javax.swing.JTextField();
+        stdLabel = new javax.swing.JLabel();
+        stdField = new javax.swing.JTextField();
+        accpLabel = new javax.swing.JLabel();
+        accpField = new javax.swing.JTextField();
+        cVarField = new javax.swing.JTextField();
+        cVarLabel = new javax.swing.JLabel();
+        skewLabel = new javax.swing.JLabel();
+        skewField = new javax.swing.JTextField();
         guideLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,11 +182,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         avatarBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Zelda", "Purah", "Riju" }));
 
-        nFollowersLabel.setText("nº de seguidores");
+        nFollowersLabel.setText("nº seguidores");
 
         nFollowersBox.setModel(new javax.swing.SpinnerNumberModel(666, 0, null, 1));
 
-        nFollowingLabel.setText("nº de seguindo");
+        nFollowingLabel.setText("nº seguindo");
 
         nFollowingBox.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
 
@@ -171,20 +204,6 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(htmlPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bioLabel)
-                    .addGroup(htmlPanelLayout.createSequentialGroup()
-                        .addComponent(bioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(renderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(htmlPanelLayout.createSequentialGroup()
-                                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(nFollowersLabel)
-                                    .addComponent(nFollowingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nFollowingBox)
-                                    .addComponent(nFollowersBox)))))
                     .addGroup(htmlPanelLayout.createSequentialGroup()
                         .addComponent(usernameLabel)
                         .addGap(5, 5, 5)
@@ -200,7 +219,25 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(avatarLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(avatarBox, 0, 77, Short.MAX_VALUE)))
+                        .addComponent(avatarBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(htmlPanelLayout.createSequentialGroup()
+                        .addComponent(bioLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(htmlPanelLayout.createSequentialGroup()
+                        .addComponent(bioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(htmlPanelLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(nFollowersLabel)
+                                    .addComponent(nFollowingLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nFollowingBox)
+                                    .addComponent(nFollowersBox)))
+                            .addGroup(htmlPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(renderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(20, 20, 20))
         );
         htmlPanelLayout.setVerticalGroup(
@@ -232,24 +269,237 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(nFollowingLabel))
                         .addGap(10, 10, 10)
                         .addComponent(renderBtn))
-                    .addComponent(bioScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                    .addComponent(bioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("Template HTML", htmlPanel);
+
+        entradaLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        entradaLabel.setText("Entrada");
+
+        entradaPane.setText("batata");
+        entradaScrollPane.setViewportView(entradaPane);
+
+        hashLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        hashLabel.setText("Hash");
+
+        hashScrollPane.setViewportView(hashPane);
+
+        hashBtn.setText("Hashear");
+        hashBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hashBtnActionPerformed(evt);
+            }
+        });
+
+        jToggleButton2.setText("Verificar");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setText("Resultado:");
+
+        jLabel3.setText("-");
 
         javax.swing.GroupLayout hashPanelLayout = new javax.swing.GroupLayout(hashPanel);
         hashPanel.setLayout(hashPanelLayout);
         hashPanelLayout.setHorizontalGroup(
             hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(hashPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(hashPanelLayout.createSequentialGroup()
+                        .addComponent(entradaLabel)
+                        .addGap(213, 213, 213)
+                        .addGroup(hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hashScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hashLabel)))
+                    .addGroup(hashPanelLayout.createSequentialGroup()
+                        .addGroup(hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(hashBtn)
+                            .addComponent(entradaScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton2))
+                    .addGroup(hashPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         hashPanelLayout.setVerticalGroup(
             hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 211, Short.MAX_VALUE)
+            .addGroup(hashPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(entradaLabel)
+                    .addComponent(hashLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(entradaScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                    .addComponent(hashScrollPane))
+                .addGap(10, 10, 10)
+                .addGroup(hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hashBtn)
+                    .addComponent(jToggleButton2))
+                .addGap(10, 10, 10)
+                .addGroup(hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(20, 20, 20))
         );
 
         jTabbedPane.addTab("Hashing", hashPanel);
+
+        numbersLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        numbersLabel.setText("Números");
+
+        numbersPane.setText("3.0, 2.0, 4.0, 2.0, 2.0, 10.0, 19.0, 18.0, 19.0, 8.0, 4.0, 1.0, 1.0, 1.0, 1.0, 1.0, 3.0, 6.0, 7.0, 9.0, 1.0");
+        numbersScrollPane.setViewportView(numbersPane);
+
+        statsGuide.setText("Insira os números separados por vírgula, como no exemplo. Espaços serão ignorados.");
+
+        lagLabel.setText("Lag para autocorrelação");
+
+        lagBox.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        statsBtn.setText("Obter medidas");
+        statsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statsBtnActionPerformed(evt);
+            }
+        });
+
+        resLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        resLabel.setText("Resultado");
+
+        meanLabel.setText("Média");
+
+        meanField.setEditable(false);
+        meanField.setToolTipText("");
+
+        medianLabel.setText("Mediana");
+
+        medianField.setEditable(false);
+        medianField.setToolTipText("");
+
+        varLabel.setText("Var");
+
+        varField.setEditable(false);
+        varField.setToolTipText("");
+
+        stdLabel.setText("Std");
+
+        stdField.setEditable(false);
+        stdField.setToolTipText("");
+
+        accpLabel.setText("aCCP");
+
+        accpField.setEditable(false);
+        accpField.setToolTipText("");
+
+        cVarField.setEditable(false);
+        cVarField.setToolTipText("");
+
+        cVarLabel.setText("cVar");
+
+        skewLabel.setText("cAssimetria");
+
+        skewField.setEditable(false);
+
+        javax.swing.GroupLayout statsPanelLayout = new javax.swing.GroupLayout(statsPanel);
+        statsPanel.setLayout(statsPanelLayout);
+        statsPanelLayout.setHorizontalGroup(
+            statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statsPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resLabel)
+                    .addComponent(statsGuide)
+                    .addComponent(numbersLabel)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statsPanelLayout.createSequentialGroup()
+                        .addComponent(lagLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lagBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(statsBtn))
+                    .addComponent(numbersScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(statsPanelLayout.createSequentialGroup()
+                                .addComponent(meanLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(meanField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statsPanelLayout.createSequentialGroup()
+                                .addComponent(medianLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(medianField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(statsPanelLayout.createSequentialGroup()
+                                .addComponent(varLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(varField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(statsPanelLayout.createSequentialGroup()
+                                .addComponent(stdLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(accpLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                            .addComponent(cVarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cVarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(accpField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(skewLabel)
+                            .addComponent(skewField))))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        statsPanelLayout.setVerticalGroup(
+            statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statsPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(statsGuide)
+                .addGap(5, 5, 5)
+                .addComponent(numbersLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(numbersScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lagLabel)
+                    .addComponent(lagBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statsBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(meanLabel)
+                            .addComponent(meanField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varLabel)
+                            .addComponent(varField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(medianLabel)
+                            .addComponent(medianField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stdLabel)
+                            .addComponent(stdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(accpLabel)
+                            .addComponent(accpField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(skewLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cVarLabel)
+                            .addComponent(cVarField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(skewField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(249, 249, 249))
+        );
+
+        jTabbedPane.addTab("Medidas estatísticas", statsPanel);
 
         guideLabel.setText("Escolha um dos três serviços abaixo. Interaja com a interface para executar.");
 
@@ -270,8 +520,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(guideLabel)
                 .addGap(20, 20, 20)
-                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -303,30 +553,71 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_renderBtnActionPerformed
 
+    private void hashBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hashBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hashBtnActionPerformed
+
+    private void statsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statsBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statsBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField accpField;
+    private javax.swing.JLabel accpLabel;
     private javax.swing.JComboBox<String> avatarBox;
     private javax.swing.JLabel avatarLabel;
     private javax.swing.JLabel bioLabel;
     private javax.swing.JScrollPane bioScrollPane;
     private javax.swing.JTextArea bioTextArea;
+    private javax.swing.JTextField cVarField;
+    private javax.swing.JLabel cVarLabel;
+    private javax.swing.JLabel entradaLabel;
+    private javax.swing.JTextPane entradaPane;
+    private javax.swing.JScrollPane entradaScrollPane;
     private javax.swing.JLabel guideLabel;
+    private javax.swing.JToggleButton hashBtn;
+    private javax.swing.JLabel hashLabel;
+    private javax.swing.JTextPane hashPane;
     private javax.swing.JPanel hashPanel;
+    private javax.swing.JScrollPane hashScrollPane;
     private javax.swing.JPanel htmlPanel;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JSpinner lagBox;
+    private javax.swing.JLabel lagLabel;
     private javax.swing.JTextField locField;
     private javax.swing.JLabel locLabel;
+    private javax.swing.JTextField meanField;
+    private javax.swing.JLabel meanLabel;
+    private javax.swing.JTextField medianField;
+    private javax.swing.JLabel medianLabel;
     private javax.swing.JSpinner nFollowersBox;
     private javax.swing.JLabel nFollowersLabel;
     private javax.swing.JSpinner nFollowingBox;
     private javax.swing.JLabel nFollowingLabel;
+    private javax.swing.JLabel numbersLabel;
+    private javax.swing.JTextPane numbersPane;
+    private javax.swing.JScrollPane numbersScrollPane;
     private javax.swing.JTextField realNameField;
     private javax.swing.JLabel realNameLabel;
     private javax.swing.JButton renderBtn;
+    private javax.swing.JLabel resLabel;
+    private javax.swing.JTextField skewField;
+    private javax.swing.JLabel skewLabel;
+    private javax.swing.JButton statsBtn;
+    private javax.swing.JLabel statsGuide;
+    private javax.swing.JPanel statsPanel;
+    private javax.swing.JTextField stdField;
+    private javax.swing.JLabel stdLabel;
     private javax.swing.JTextField usernameField;
     private javax.swing.JLabel usernameLabel;
+    private javax.swing.JTextField varField;
+    private javax.swing.JLabel varLabel;
     // End of variables declaration//GEN-END:variables
 }
