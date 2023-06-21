@@ -3,10 +3,10 @@ package server;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.net.Socket;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 import compute.Compute;
@@ -28,9 +28,10 @@ public class Server {
                 Socket soc = null;
                 try {
                     soc = serverSocket.accept();
-                    // Pegando os fluxos...
-                    DataInputStream inStream = new DataInputStream(soc.getInputStream());
-                    DataOutputStream outStream = new DataOutputStream(soc.getOutputStream());
+                    // ATENÇÃO: deve-se criar o ObjectOutputStream antes do ObjectInputStream
+                    // caso contrário haverá deadlock.
+                    ObjectOutputStream outStream = new ObjectOutputStream(soc.getOutputStream());
+                    ObjectInputStream inStream = new ObjectInputStream(soc.getInputStream());
                     // Invocando uma thread para cuidar dessa conexão.
                     Thread t = new ClientHandler(soc, inStream, outStream, comp);
                     // Iniciando a thread.

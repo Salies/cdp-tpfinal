@@ -1,10 +1,10 @@
 package server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.net.Socket;
 import java.rmi.RemoteException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import compute.Compute;
 
@@ -18,12 +18,12 @@ import server.stats.DataStats;
 public class ClientHandler extends Thread {
 
     final private Socket soc;
-    final private DataInputStream inStream;
-    final private DataOutputStream outStream;
+    final private ObjectInputStream inStream;
+    final private ObjectOutputStream outStream;
     final private Compute comp;
     final static private String remoteErrorMsg = "Erro ao executar a task remotamente:";
 
-    public ClientHandler(Socket soc, DataInputStream inStream, DataOutputStream outStream, Compute comp) {
+    public ClientHandler(Socket soc, ObjectInputStream inStream, ObjectOutputStream outStream, Compute comp) {
         this.soc = soc;
         this.inStream = inStream;
         this.outStream = outStream;
@@ -59,7 +59,7 @@ public class ClientHandler extends Thread {
         while(true) {
             // Loop principal
             try {
-                received = this.inStream.readUTF();
+                received = (String) this.inStream.readObject();
                 // qqq - código de quitar da Bethesda ;)
                 if(received.equals("qqq")) {
                     this.soc.close();
@@ -81,8 +81,9 @@ public class ClientHandler extends Thread {
                 }
 
                 // Mandando a resposta para o cliente
-                this.outStream.writeUTF(toSend);
-            } catch (IOException e) {
+                this.outStream.writeObject(toSend);
+            } catch (Exception e) {
+                // IOException, ClassNotFoundException, RemoteException
                 System.err.println("Erro ao ler do cliente.");
                 e.printStackTrace();
             }

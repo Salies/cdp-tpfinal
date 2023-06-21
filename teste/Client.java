@@ -18,17 +18,19 @@ public class Client
             Socket s = new Socket(ip, 666);
       
             // obtaining input and out streams
-            DataInputStream dis = new DataInputStream(s.getInputStream());
-            DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+            ObjectOutputStream dos = new ObjectOutputStream(s.getOutputStream());
+            ObjectInputStream dis = new ObjectInputStream(s.getInputStream());
       
             // the following loop performs the exchange of
             // information between client and client handler
-            dos.writeUTF("network Salies salies It's%not%a%lake,%it's%an%ocean. São%Paulo 0 666 1");
+            String msg = "network Salies salies It's%not%a%lake,%it's%an%ocean. São%Paulo 0 666 1";
+            dos.writeObject(msg);
 
-            String received = dis.readUTF();
+            String received = (String) dis.readObject();
             System.out.println(received);
 
-            dos.writeUTF("qqq");
+            msg = "qqq";
+            dos.writeObject(msg);
               
             // closing resources
             scn.close();
