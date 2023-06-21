@@ -14,18 +14,15 @@ import java.util.HashMap;
  * @author Daniel
  */
 public class MainWindow extends javax.swing.JFrame {
-    private SocketClient socketClient;
-    /**
-     * Creates new form MainWindow
-     */
-    public MainWindow(SocketClient soc) {
+    private ClientController controller;
+
+    public MainWindow(ClientController controller) {
+        this.controller = controller;
+
         FlatLightLaf.setup();
         initComponents();
-        // Força a função do spinner a rodar
-        funcTypeActionPerformed(null);
-        this.socketClient = soc;
+
         this.setVisible(true);
-        soc.sendMessage("SALVE NEGADA");
     }
 
     /**
@@ -38,144 +35,12 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane = new javax.swing.JTabbedPane();
-        plotPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        funcType = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        fromXSpinner = new javax.swing.JSpinner();
-        jLabel4 = new javax.swing.JLabel();
-        toXSpinner = new javax.swing.JSpinner();
-        jLabel5 = new javax.swing.JLabel();
-        aSpinner = new javax.swing.JSpinner();
-        jLabel6 = new javax.swing.JLabel();
-        bSpinner = new javax.swing.JSpinner();
-        jLabel7 = new javax.swing.JLabel();
-        cSpinner = new javax.swing.JSpinner();
-        jLabel8 = new javax.swing.JLabel();
-        dSpinner = new javax.swing.JSpinner();
-        plotBtn = new javax.swing.JButton();
-        imgLabel = new javax.swing.JLabel();
         htmlPanel = new javax.swing.JPanel();
         hashPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TP Final CDeP - Cliente");
-
-        jLabel2.setText("Tipo de função:");
-
-        funcType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Afim", "Parábola", "Cúbica", "Seno" }));
-        funcType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                funcTypeActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("De x:");
-
-        fromXSpinner.setModel(new javax.swing.SpinnerNumberModel(-10.0d, null, null, 0.5d));
-
-        jLabel4.setText("Até x:");
-
-        toXSpinner.setModel(new javax.swing.SpinnerNumberModel(10.0d, null, null, 0.5d));
-
-        jLabel5.setText("a:");
-
-        aSpinner.setModel(new javax.swing.SpinnerNumberModel(1.0d, null, null, 0.5d));
-
-        jLabel6.setText("b:");
-
-        bSpinner.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 0.5d));
-
-        jLabel7.setText("c:");
-
-        cSpinner.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 0.5d));
-
-        jLabel8.setText("d:");
-
-        dSpinner.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 0.5d));
-
-        plotBtn.setText("Plotar");
-        plotBtn.setPreferredSize(new java.awt.Dimension(106, 23));
-        plotBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                plotBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout plotPanelLayout = new javax.swing.GroupLayout(plotPanel);
-        plotPanel.setLayout(plotPanelLayout);
-        plotPanelLayout.setHorizontalGroup(
-            plotPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plotPanelLayout.createSequentialGroup()
-                .addGroup(plotPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(plotPanelLayout.createSequentialGroup()
-                        .addComponent(imgLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plotPanelLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(plotPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(plotPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(funcType, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fromXSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(toXSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(plotPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(plotBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(52, 52, 52)))
-                .addGap(24, 24, 24))
-        );
-        plotPanelLayout.setVerticalGroup(
-            plotPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plotPanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(plotPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(funcType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(fromXSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(toXSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(plotPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(aSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(bSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(cSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(dSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(plotBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(imgLabel)
-                .addContainerGap(285, Short.MAX_VALUE))
-        );
-
-        jTabbedPane.addTab("Plot de funções", plotPanel);
 
         javax.swing.GroupLayout htmlPanelLayout = new javax.swing.GroupLayout(htmlPanel);
         htmlPanel.setLayout(htmlPanelLayout);
@@ -229,68 +94,14 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void funcTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcTypeActionPerformed
-        int idx = funcType.getSelectedIndex();
-        if (idx == 3) idx = -2;
-        JSpinner[] spinners = {aSpinner, bSpinner, cSpinner, dSpinner};
-        int act = idx + 2;
-        for(int i = 0; i < 4; i++){
-            if(i < act) {
-                spinners[i].setEnabled(true);
-                continue;
-            }
-            spinners[i].setEnabled(false);
-        }
-    }//GEN-LAST:event_funcTypeActionPerformed
-
-    private void plotBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plotBtnActionPerformed
-        StringBuilder query = new StringBuilder();
-        // formato do query: "plot <tipo da função (int)> <x inicial (double)> <x final (double)> <a (double)> <b (double)> <c (double)> <d (double)>"
-        // a, b, c e d opcionais, a depender do tipo de função
-        query.append("plot ");
-        query.append(funcType.getSelectedIndex());
-        query.append(" ");
-        query.append(fromXSpinner.getValue());
-        query.append(" ");
-        query.append(toXSpinner.getValue());
-        int idx = funcType.getSelectedIndex();
-        if (idx == 3) idx = -2;
-        JSpinner[] spinners = {aSpinner, bSpinner, cSpinner, dSpinner};
-        int act = idx + 2;
-        for(int i = 0; i < 4; i++){
-            if(i >= act) break;
-            query.append(" ");
-            query.append(spinners[i].getValue());
-        }
-
-        socketClient.sendMessage(query.toString());
-    }//GEN-LAST:event_plotBtnActionPerformed
-
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner aSpinner;
-    private javax.swing.JSpinner bSpinner;
-    private javax.swing.JSpinner cSpinner;
-    private javax.swing.JSpinner dSpinner;
-    private javax.swing.JSpinner fromXSpinner;
-    private javax.swing.JComboBox<String> funcType;
     private javax.swing.JPanel hashPanel;
     private javax.swing.JPanel htmlPanel;
-    private javax.swing.JLabel imgLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JTabbedPane jTabbedPane;
-    private javax.swing.JButton plotBtn;
-    private javax.swing.JPanel plotPanel;
-    private javax.swing.JSpinner toXSpinner;
     // End of variables declaration//GEN-END:variables
 }
