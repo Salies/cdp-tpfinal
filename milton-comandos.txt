@@ -17,6 +17,6 @@ java -cp "F:\Documentos\Unesp\CDP\cdp-tpfinal;F:\Documentos\Unesp\CDP\cdp-tpfina
 
 ::: Rodando o servidor
 
-java -cp "F:\Documentos\Unesp\CDP\cdp-tpfinal;F:\Documentos\Unesp\CDP\cdp-tpfinal\classes\compute.jar" '-Djava.security.policy=client-win.policy' server.Server localhost 1099 51666
+java -cp "F:\Documentos\Unesp\CDP\cdp-tpfinal;F:\Documentos\Unesp\CDP\cdp-tpfinal\classes\compute.jar" '-Djava.security.policy=client-win.policy' server.Server localhost 1099 666
 
 ::: O cliente deve ser compilado a partir do projeto IntelliJ

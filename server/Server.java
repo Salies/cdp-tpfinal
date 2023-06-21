@@ -2,8 +2,11 @@ package server;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.net.Socket;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.ServerSocket;
+import java.io.IOException;
 import java.util.HashMap;
 
 import compute.Compute;
@@ -14,15 +17,15 @@ import server.stats.DataStats;
 public class Server {
     public static void main(String args[]) {
         try {
-            System.out.println("Servidor iniciado.");
-            System.out.println("Estabelecendo conexão com o executor...");
+            System.out.println("Servidor iniciado.\n");
+            System.out.println("Estabelecendo conexao com o executor...");
             Registry registry = LocateRegistry.getRegistry(args[0], Integer.parseInt(args[1]));
             Compute comp = (Compute) registry.lookup("Serezane");
-            System.out.println("Conexão com o executor estabelecida.");
+            System.out.println("Conexao com o executor estabelecida.\n");
             System.out.println("Iniciando o listener...");
             // Criando o socket.
             ServerSocket serverSocket = new ServerSocket(Integer.parseInt(args[2]));
-            System.out.println("Listener iniciado. O servidor está pronto para receber conexões.");
+            System.out.println("Listener iniciado. O servidor esta pronto para receber conexoes.");
             // Loop principal de conexões.
             while(true) {
                 Socket soc = null;
@@ -36,7 +39,8 @@ public class Server {
                     // Iniciando a thread.
                     t.start();
                 } catch (Exception e) {
-                    System.err.println("Erro ao aceitar conexão.");
+                    soc.close();
+                    System.err.println("Erro ao aceitar conexao.");
                     e.printStackTrace();
                 }
             }

@@ -21,14 +21,14 @@ public class Runner implements Compute {
 
     public static void main(String[] args) {
         try {
-            Compute engine = new ComputeEngine();
+            Compute engine = new Runner();
             Compute stub = (Compute) UnicastRemoteObject.exportObject(engine, 0);
             // args[0] = port pro rmi registry
             Registry registry = LocateRegistry.createRegistry(Integer.parseInt(args[0]));
             registry.rebind("Serezane", stub);
             System.out.println("Runner bound.");
         } catch (Exception e) {
-            System.err.println("Runner exception:");
+            System.err.println("Erro no runner:");
             e.printStackTrace();
         }
     }
