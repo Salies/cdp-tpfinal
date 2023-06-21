@@ -41,9 +41,9 @@ public class ClientHandler extends Thread {
         );
 
         try {
-            System.out.println("Enviando objeto ProfileRenderer (servico Template Engine) para o executor...");
+            System.out.println("Enviando objeto ProfileRenderer (servico network) para o executor...");
             String html = this.comp.executeTask(pr);
-            System.out.println("Recebida a resposta para o servico Template Engine.");
+            System.out.println("Recebida a resposta para o servico network.");
             return html;
         } catch(RemoteException e) {
             System.err.println(remoteErrorMsg);
@@ -57,9 +57,9 @@ public class ClientHandler extends Thread {
         if(command[1].equals("exec")) {
             Hash h = new Hash(command[2], command[3]);
             try {
-                System.out.println("Enviando objeto Hash (servico Hashing) para o executor...");
+                System.out.println("Enviando objeto Hash (servico hash) para o executor...");
                 String resHash = this.comp.executeTask(h);
-                System.out.println("Recebida a resposta para o servico Hashing.");
+                System.out.println("Recebida a resposta para o servico hash.");
                 return resHash;
             } catch(RemoteException e) {
                 System.err.println(remoteErrorMsg);
@@ -72,9 +72,9 @@ public class ClientHandler extends Thread {
 
         VerifyHash vh = new VerifyHash(command[2], command[3], command[4]);
         try {
-            System.out.println("Enviando objeto VerifyHash (servico Hashing) para o executor...");
+            System.out.println("Enviando objeto VerifyHash (servico hash) para o executor...");
             Boolean resHash = this.comp.executeTask(vh);
-            System.out.println("Recebida a resposta para o servico Hashing.");
+            System.out.println("Recebida a resposta para o servico hash.");
             return resHash.toString();
         } catch(RemoteException e) {
             System.err.println(remoteErrorMsg);
