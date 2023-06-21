@@ -21,8 +21,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         FlatLightLaf.setup();
         initComponents();
+        customInitComponents();
+    }
 
-        this.setVisible(true);
+    // Como o NetBeans pede para que eu não altere o código dele,
+    // criaria uma initComponentes própria
+    private void customInitComponents() {
+        // ...
     }
 
     /**
@@ -36,21 +41,147 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTabbedPane = new javax.swing.JTabbedPane();
         htmlPanel = new javax.swing.JPanel();
+        usernameLabel = new javax.swing.JLabel();
+        usernameField = new javax.swing.JTextField();
+        realNameLabel = new javax.swing.JLabel();
+        realNameField = new javax.swing.JTextField();
+        bioLabel = new javax.swing.JLabel();
+        bioScrollPane = new javax.swing.JScrollPane();
+        bioTextArea = new javax.swing.JTextArea();
+        locLabel = new javax.swing.JLabel();
+        locField = new javax.swing.JTextField();
+        avatarLabel = new javax.swing.JLabel();
+        avatarBox = new javax.swing.JComboBox<>();
+        nFollowersLabel = new javax.swing.JLabel();
+        nFollowersBox = new javax.swing.JSpinner();
+        nFollowingLabel = new javax.swing.JLabel();
+        nFollowingBox = new javax.swing.JSpinner();
+        resScrollPane = new javax.swing.JScrollPane();
+        resPane = new javax.swing.JEditorPane();
+        resLabel = new javax.swing.JLabel();
+        renderBtn = new javax.swing.JButton();
         hashPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        guideLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TP Final CDeP - Cliente");
+
+        usernameLabel.setText("Nome de usuário:");
+
+        usernameField.setText("sonicsalies");
+
+        realNameLabel.setText("Nome real:");
+
+        realNameField.setText("Daniel Serezane");
+
+        bioLabel.setText("Bio");
+
+        bioTextArea.setColumns(20);
+        bioTextArea.setRows(5);
+        bioTextArea.setText("It's not a lake, it's an ocean.");
+        bioScrollPane.setViewportView(bioTextArea);
+
+        locLabel.setText("Localização");
+
+        locField.setText("Martinópolis, SP");
+
+        avatarLabel.setText("Avatar");
+
+        avatarBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        nFollowersLabel.setText("nº de seguidores");
+
+        nFollowingLabel.setText("nº de seguindo");
+
+        resScrollPane.setViewportView(resPane);
+
+        resLabel.setText("Resultado");
+
+        renderBtn.setText("Renderizar");
 
         javax.swing.GroupLayout htmlPanelLayout = new javax.swing.GroupLayout(htmlPanel);
         htmlPanel.setLayout(htmlPanelLayout);
         htmlPanelLayout.setHorizontalGroup(
             htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
+            .addGroup(htmlPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(htmlPanelLayout.createSequentialGroup()
+                        .addComponent(resLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(htmlPanelLayout.createSequentialGroup()
+                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(resScrollPane, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bioLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, htmlPanelLayout.createSequentialGroup()
+                                .addComponent(bioScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(htmlPanelLayout.createSequentialGroup()
+                                        .addComponent(nFollowingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(nFollowingBox))
+                                    .addGroup(htmlPanelLayout.createSequentialGroup()
+                                        .addComponent(nFollowersLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(nFollowersBox))
+                                    .addComponent(renderBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(20, 20, 20))
+                    .addGroup(htmlPanelLayout.createSequentialGroup()
+                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(htmlPanelLayout.createSequentialGroup()
+                                .addComponent(usernameLabel)
+                                .addGap(5, 5, 5)
+                                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(realNameLabel)
+                                .addGap(5, 5, 5)
+                                .addComponent(realNameField))
+                            .addGroup(htmlPanelLayout.createSequentialGroup()
+                                .addComponent(locLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(locField, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(avatarLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(avatarBox, 0, 77, Short.MAX_VALUE)))
+                        .addGap(20, 20, 20))))
         );
         htmlPanelLayout.setVerticalGroup(
             htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+            .addGroup(htmlPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernameLabel)
+                    .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(realNameLabel)
+                    .addComponent(realNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(locLabel)
+                    .addComponent(locField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(avatarLabel)
+                    .addComponent(avatarBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(bioLabel)
+                .addGap(5, 5, 5)
+                .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(htmlPanelLayout.createSequentialGroup()
+                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nFollowersBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nFollowersLabel))
+                        .addGap(10, 10, 10)
+                        .addGroup(htmlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nFollowingBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nFollowingLabel))
+                        .addGap(10, 10, 10)
+                        .addComponent(renderBtn))
+                    .addComponent(bioScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(resScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         jTabbedPane.addTab("Template HTML", htmlPanel);
@@ -63,12 +194,12 @@ public class MainWindow extends javax.swing.JFrame {
         );
         hashPanelLayout.setVerticalGroup(
             hashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+            .addGap(0, 382, Short.MAX_VALUE)
         );
 
         jTabbedPane.addTab("Hashing", hashPanel);
 
-        jLabel1.setText("Escolha um dos três serviços abaixo. Interaja com a interface para executar.");
+        guideLabel.setText("Escolha um dos três serviços abaixo. Interaja com a interface para executar.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,7 +208,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(guideLabel)
                     .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
@@ -85,7 +216,7 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(guideLabel)
                 .addGap(20, 20, 20)
                 .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -99,9 +230,28 @@ public class MainWindow extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> avatarBox;
+    private javax.swing.JLabel avatarLabel;
+    private javax.swing.JLabel bioLabel;
+    private javax.swing.JScrollPane bioScrollPane;
+    private javax.swing.JTextArea bioTextArea;
+    private javax.swing.JLabel guideLabel;
     private javax.swing.JPanel hashPanel;
     private javax.swing.JPanel htmlPanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JTextField locField;
+    private javax.swing.JLabel locLabel;
+    private javax.swing.JSpinner nFollowersBox;
+    private javax.swing.JLabel nFollowersLabel;
+    private javax.swing.JSpinner nFollowingBox;
+    private javax.swing.JLabel nFollowingLabel;
+    private javax.swing.JTextField realNameField;
+    private javax.swing.JLabel realNameLabel;
+    private javax.swing.JButton renderBtn;
+    private javax.swing.JLabel resLabel;
+    private javax.swing.JEditorPane resPane;
+    private javax.swing.JScrollPane resScrollPane;
+    private javax.swing.JTextField usernameField;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

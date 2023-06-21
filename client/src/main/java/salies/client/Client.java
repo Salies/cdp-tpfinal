@@ -33,6 +33,6 @@ public class Client {
 
         // Criando o controlador
         // Ele cuidará do resto
-        new ClientController(outStream, inStream);
+        new ClientController(soc, outStream, inStream);
     }
 }
