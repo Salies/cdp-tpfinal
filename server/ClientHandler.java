@@ -82,6 +82,20 @@ public class ClientHandler extends Thread {
         return "";
     }
 
+    private String handleStats(String[] command) {
+        DataStats ds = new DataStats(command[1], command[2]);
+        try {
+            System.out.println("Enviando objeto DataStats (servico Medidas Estatisticas) para o executor...");
+            String resStats = this.comp.executeTask(ds);
+            System.out.println("Recebida a resposta para o servico Medidas Estatisticas.");
+            return resStats;
+        } catch(RemoteException e) {
+            System.err.println(remoteErrorMsg);
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     @Override
     public void run() {
         // A comunicação com o cliente dá-se exclusivamente por meio de strings.
@@ -96,7 +110,9 @@ public class ClientHandler extends Thread {
                 System.out.println("Comando recebido do cliente: " + received);
                 // qqq - código de quitar da Bethesda ;)
                 if(received.equals("qqq")) {
+                    System.out.println("Cliente solicitou o encerramento da conexao. Encerrando...");
                     this.soc.close();
+                    System.out.println("Conexao encerrada.\n");
                     break;
                 }
 
