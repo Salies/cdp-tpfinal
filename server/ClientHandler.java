@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
 
 import compute.Compute;
 
@@ -83,12 +84,26 @@ public class ClientHandler extends Thread {
     }
 
     private String handleStats(String[] command) {
-        DataStats ds = new DataStats(command[1], command[2]);
+        // command[1] é uma sequência de números separadas por ;.
+        // ex.: 1.5;2.7;3.9;4.1;5.3;6.5;7.7;8.9;9.1;10.3
+        String[] numbers = command[1].split(";");
+        // to Double
+        Double[] data = new Double[numbers.length];
+        for(int i = 0; i < numbers.length; i++) {
+            data[i] = Double.parseDouble(numbers[i]);
+        }
+        // command[2] é o lag para autocorrelação.
+        Integer lag = Integer.parseInt(command[2]);
+        DataStats ds = new DataStats(data, lag);
         try {
             System.out.println("Enviando objeto DataStats (servico Medidas Estatisticas) para o executor...");
-            String resStats = this.comp.executeTask(ds);
+            HashMap<String, Double> resStats = this.comp.executeTask(ds);
             System.out.println("Recebida a resposta para o servico Medidas Estatisticas.");
-            return resStats;
+            StringBuilder res = new StringBuilder();
+            for(String key : resStats.keySet()) {
+                res.append(key + ":" + resStats.get(key) + ";");
+            }
+            return res.toString();
         } catch(RemoteException e) {
             System.err.println(remoteErrorMsg);
             e.printStackTrace();
@@ -125,6 +140,9 @@ public class ClientHandler extends Thread {
                         break;
                     case "hash":
                         toSend = handleHash(command);
+                        break;
+                    case "stats":
+                        toSend = handleStats(command);
                         break;
                     default:
                         toSend = "error";

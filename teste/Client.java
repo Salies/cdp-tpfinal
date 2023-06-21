@@ -43,6 +43,19 @@ public class Client
             received = (String) dis.readObject();
             System.out.println(received);
 
+            // datastats
+            Double[] data = {3.0, 2.0, 4.0, 2.0, 2.0, 10.0, 19.0, 18.0, 19.0, 8.0, 4.0, 1.0, 1.0, 1.0, 1.0, 1.0, 3.0, 6.0, 7.0, 9.0, 1.0};
+            String dataString = "";
+            for(int i = 0; i < data.length; i++) {
+                dataString += data[i].toString() + ";";
+            }
+            dataString = dataString.substring(0, dataString.length() - 1);
+            msg = "stats " + dataString + " 1";
+            dos.writeObject(msg);
+
+            received = (String) dis.readObject();
+            System.out.println(received);
+
             msg = "qqq";
             dos.writeObject(msg);
               
