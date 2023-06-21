@@ -1,6 +1,7 @@
 package salies.client;
 
 import java.awt.event.WindowAdapter;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -54,6 +55,8 @@ class ClientController {
     }
 
     private void closeConnection() throws IOException {
+        // Excluindo arquivo temp.html, caso exista
+        new File("temp.html").delete();
         System.out.println("Fechando a conexão...");
         this.outStream.writeObject("qqq");
         this.soc.close();
