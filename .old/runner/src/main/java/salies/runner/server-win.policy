@@ -1,5 +1,0 @@
-grant {
-    permission java.net.SocketPermission "localhost:*", "connect, resolve";
-    permission java.net.SocketPermission "localhost:*", "accept";
-    permission java.security.AllPermission;
-}; 
