@@ -4,6 +4,7 @@ import compute.Task;
 
 import java.io.Serializable;
 
+// Classe responsável pela task de verificar se um dado hash é de fato o hash de uma dada string
 public class VerifyHash implements Task<Boolean>, Serializable {
     private static final long serialVersionUID = 666L;
 

@@ -37,10 +37,12 @@ import java.awt.image.BufferedImage;
 import java.math.BigDecimal;
 import java.io.File;
 import javax.imageio.ImageIO;
+import java.util.HashMap;
+
 import compute.Compute;
 import server.hashing.Hash;
 import server.network.ProfileRenderer;
-import server.plotter.Cubic;
+import server.stats.DataStats;
 
 public class ComputePi {
     public static void main(String args[]) {
@@ -63,13 +65,14 @@ public class ComputePi {
             ProfileRenderer task2 = new ProfileRenderer("João", "joao", "Sou o João", "Porto", 1, 0, 0);
             String html = comp.executeTask(task2);
 
+            //System.out.println(html);
             System.out.println("html ok");
 
-            Cubic task3 = new Cubic(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 4.0f, 0.1f, "cubic");
-            //BufferedImage img = comp.executeTask(task3);
-            // save image as file
-            //File outputfile = new File("saved.png");
-            //ImageIO.write(img, "png", outputfile);
+            Double[] data = {3.0, 2.0, 4.0, 2.0, 2.0, 10.0, 19.0, 18.0, 19.0, 8.0, 4.0, 1.0, 1.0, 1.0, 1.0, 1.0, 3.0, 6.0, 7.0, 9.0, 1.0};
+            DataStats ds = new DataStats(data, 1);
+            HashMap<String, Double> stats = comp.executeTask(ds);
+            System.out.println(stats);
+            
         } catch (Exception e) {
             System.err.println("ComputePi exception:");
             e.printStackTrace();
