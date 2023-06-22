@@ -42,7 +42,7 @@ class ClientController {
         // passo 2: recebe a resposta do servidor - dado o protocolo estabelecido,
         // ela sempre será uma String
         String response = (String) this.inStream.readObject();
-        System.out.println("Recebido o resultado do servidor.");
+        System.out.println("Recebido o resultado do servidor.\n");
 
         // passo 3: mandando a resposta para a MainWindow.
         // Não é responsabilidade do controlador trata-lá, isso é coisa da View.
